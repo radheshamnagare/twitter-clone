@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :user
-  has_one_attached :profile_photo
+  has_one_attached :profile_photo,dependent: :destroy
    
+  validates :name,presence: :true
 end

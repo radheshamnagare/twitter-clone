@@ -21,6 +21,7 @@
     <%= render "layouts/navbar" %>
     <br><br>
     
+    <div class="container">
     <%if alert %>
      <%= render "layouts/alerts" %>
     <%end%>
@@ -28,7 +29,7 @@
     <%if notice%>
      <%= render "layouts/warnings" %>
     <%end%>
-    
+    </div>
     <%= yield %>
    </div>
     <!-- Optional JavaScript -->

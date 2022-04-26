@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
 
 <%= render @profile %>
+<br/><br/>
+<div class="btn btn-group">
+  <%= link_to "Back ", profiles_path ,class:"btn btn-dark btn-sm"%>
+  &nbsp;
+  <%= link_to "Edit this profile", edit_profile_path(@profile) ,class:"btn btn-primary btn-sm"%> 
+  &nbsp;
+  <%= button_to "Destroy this profile", @profile, method: :delete ,class:"btn btn-danger btn-sm"%>
+</div>
 
-<div>
-  <%= link_to "Edit this profile", edit_profile_path(@profile) %> |
-  <%= link_to "Back to profiles", profiles_path %>
-
-  <%= button_to "Destroy this profile", @profile, method: :delete %>
 </div>
