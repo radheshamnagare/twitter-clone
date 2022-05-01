@@ -1,13 +1,39 @@
 
 <h1>Profiles</h1>
 
-<div id="profiles">
-  <% @profiles.each do |profile| %>
-    <%= render profile %>
-    <p>
-      <%= link_to "Show this profile", profile %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <th scope="row">1</th>
+  <div id="profiles">
+   <% @profiles.each do |profile| %>
+      <%if current_user.profile%>
+       <td>
+        <%= current_user.profile.name%>
+       </td>    
+       <td>
+       <%= link_to "Show this profile", profile %>
+       </td>
+      <%end%> 
 
-<%= link_to "New profile", new_profile_path %>
+   <% end %>
+   <% if current_user.profile.nil? %>
+          <td> Not Available</td>
+          <td>Not Available</td>
+   <%end%>
+ </div>
+</tr>    
+  </tbody>
+</table>
+<br/><br/>
+
+<%if !current_user.profile%>
+<%= link_to "New profile", new_profile_path ,class:"btn btn-dark"%>
+<%end%>

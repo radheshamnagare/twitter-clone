@@ -1,7 +1,7 @@
 <div class="container">
 
 <%= render @profile %>
-<br/><br/>
+
 <div class="btn btn-group">
   <%= link_to "Back ", profiles_path ,class:"btn btn-dark btn-sm"%>
   &nbsp;
@@ -9,5 +9,5 @@
   &nbsp;
   <%= button_to "Destroy this profile", @profile, method: :delete ,class:"btn btn-danger btn-sm"%>
 </div>
-
+<br/><br/>
 </div>
