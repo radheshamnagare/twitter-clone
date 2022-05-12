@@ -5,7 +5,8 @@ class ProfilesController < ApplicationController
 
   # GET /profiles or /profiles.json
   def index
-    @profiles = Profile.all
+    @profile = current_user.profile
+    @tweets = current_user.tweets
   end
 
   # GET /profiles/1 or /profiles/1.json
@@ -58,6 +59,8 @@ class ProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

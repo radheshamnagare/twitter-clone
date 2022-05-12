@@ -1,9 +1,10 @@
 class User < ApplicationRecord
  
-  # , :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:confirmable
 
          has_one :profile,dependent: :destroy
-         
+         has_many :tweets,dependent: :destroy
+         has_many :subscriptions,dependent: :destroy
 end

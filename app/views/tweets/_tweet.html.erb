@@ -1,0 +1,52 @@
+<div id="<%= dom_id tweet %>">
+  
+
+    
+      <%if !tweet.user.profile.nil? %>
+      <div class="card-header" ,style="color:blue;">
+       <%= image_tag tweet.user.profile.profile_photo ,class:"rounded-circle",style:"width:100px;height:100px;" %> 
+        </div>  
+      <%end%> 
+    
+
+      <div class="card-body">
+      <strong>
+       Title:
+       <%= tweet.title%>
+       </strong>
+       <br/><br/>
+      <%= image_tag tweet.image ,class:"rounded ",style:"width:600px;"%>
+      <br/><br/>
+       <strong>About:</strong>
+        <%= tweet.about%>
+        <br/><br/>
+       <strong>Description :</strong>
+       <%= tweet.description %>
+        <br/><br/>
+
+      <%if tweet.user == current_user %>  
+      <div class="btn btn-group">
+      
+       <%= link_to "Edit", edit_tweet_path(tweet) ,class:"btn btn-warning btn-sm "%> &nbsp;
+        
+     <%end%>
+       <%= link_to "Back ", tweets_path ,class:"btn btn-dark btn-sm"%>
+      </div>
+     
+     </div>
+      
+    <div class="card-footer">
+        <strong>created_at :</strong>
+        <%= time_ago_in_words(tweet.created_at)%> |
+        <strong>updated_at</strong>
+        <%= time_ago_in_words(tweet.updated_at)%> |
+        <% if !tweet.user.profile.nil? %> 
+        <strong> BY : <%= tweet.user.profile.name %></strong>
+        <%else%>
+           <strong>  <%= tweet.user.email %></strong>
+        <%end%>
+    </div>  
+ 
+  </div>
+
+
