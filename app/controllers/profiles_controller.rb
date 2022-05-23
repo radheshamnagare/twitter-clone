@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
   def index
     @profile = current_user.profile
     @tweets = current_user.tweets
+    @Connections = current_user.subscriptions
   end
 
   # GET /profiles/1 or /profiles/1.json

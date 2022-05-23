@@ -38,6 +38,7 @@
 
 <br/><br/>
 <h1>Tweets</h1>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -48,6 +49,11 @@
     </tr>
   </thead>
   <tbody>
+   <%if @tweets.count ==0%>
+    <td >1</td>
+    <td>Not Available</td>
+    <td>Not Available</td>
+  <%else%>  
   <% @tweets.each do |tweet|%>
   <tr>
       <td class="counterCell"></td>
@@ -58,5 +64,45 @@
       </td> 
   </tr>   
   <%end%> 
+  <%end%>
   </tbody>
 </table>
+</div>
+
+<br/><br/>
+<h1>Connections</h1>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+   
+  <% if @Connections.count ==0%>
+      <tr>
+        <td>1</td>
+        <td>Not Available</td>
+        <td>Not Available</td>
+      </tr>
+  <%else%> 
+  <% @Connections.each do |c|%>  
+  <tr>
+      <td class="counterCell"></td>
+      <td> 
+          <% p= Profile.where("user_id IN(?)",c.subscription_id)%>
+          <%= link_to p.first.name,p.first %>
+      </td>
+      <td>
+       <%= button_to "Destroy", c, method: :delete ,class:"btn btn-secondary btn-sm" %>
+      </td> 
+  </tr>   
+  <%end%> 
+  <%end%>
+  </tbody>
+</table>
+</div>

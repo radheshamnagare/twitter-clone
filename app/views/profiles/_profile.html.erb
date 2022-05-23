@@ -1,15 +1,12 @@
-<div class="card">
- <div class="card-header">
-      <strong>Name:</strong>
-     <%= profile.name %>
+<div class="card" style="width:50%;">
     
- </div>
  <div class="card-body">
   <div id="<%= dom_id profile %>">
-   <%= image_tag(profile.profile_photo,class:"rounded mx-auto ",style: 'height:300px;width:300px;') %>
-   <br/><br/>
    
-
+   <%= image_tag(profile.profile_photo,class:"rounded-circle mx-auto ",style: 'height:300px;width:300px;') %>
+   <br/><br/>
+   <strong>Name:</strong><%= profile.name.split.map(&:capitalize).join(' ') %>
+    <br/><br/>  
     <p>
      <strong>Bio:</strong>
      <%= profile.bio %>
@@ -17,6 +14,11 @@
   </div>
   </div>  
   <div class="card-footer">
-    Created : <%= profile.created_at %> | Upadate :<%= profile.updated_at%>
+   <% if @profile.user == current_user%>
+  <%= link_to "Edit this profile", edit_profile_path(profile) ,class:"btn btn-outline-primary btn-sm"%> 
+<%end%>
+   <strong> 
+   Created : <%= time_ago_in_words(profile.created_at) %> | Upadate :<%= time_ago_in_words(profile.updated_at) %>
+   </strong>
   </div>
  </div>

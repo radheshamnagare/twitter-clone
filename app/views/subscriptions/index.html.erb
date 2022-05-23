@@ -1,4 +1,10 @@
+<%if @profiles.blank? %>
+  
+    <%= image_tag "search" ,class:"rounded mx-auto d-block"%>
+    <br/>
+    <p style="text-align: center;"> No Public User's Found !</p>
 
+<%else%>
 <%@profiles.each do |profile|%>
  <%if profile.user!= current_user && !Subscription.exists?('subscription_id' => profile.user.id)%>
 <div class="card" style="width:30%;float:left;margin:4px;" >
@@ -35,16 +41,16 @@
   </div>
 
   <div>
-    <%= form.submit value:"subscribe",class:"btn btn-danger btn-sm" %>
+    <%= form.submit value:"connect",class:"btn btn-danger btn-sm" %>
   </div>
  <% end %>
   &nbsp;
 
-   <button class="btn btn-sm">Follower :
+   <button class="btn btn-sm">Connections :
     <%= profile.user.subscriptions.count%>
     </button>
     &nbsp;
-    <%= link_to "show more", profile_path(profile) ,class:"btn btn-primary btn-sm"%>
+    <%= link_to "show more", profile_path(profile) ,class:"btn btn btn-sm"%>
   </div> 
 
    </div> 
@@ -53,4 +59,4 @@
  </div>
  <%end%>
 <%end%>
-
+<%end%>

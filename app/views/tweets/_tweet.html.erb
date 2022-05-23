@@ -1,6 +1,5 @@
 <div id="<%= dom_id tweet %>">
   
-
     
       <%if !tweet.user.profile.nil? %>
       <div class="card-header" ,style="color:blue;">
@@ -15,7 +14,9 @@
        <%= tweet.title%>
        </strong>
        <br/><br/>
-      <%= image_tag tweet.image ,class:"rounded ",style:"width:600px;"%>
+       <% if tweet.image.attached? %>
+        <%= image_tag tweet.image ,class:"rounded ",style:"width:600px;"%>
+       <%end%> 
       <br/><br/>
        <strong>About:</strong>
         <%= tweet.about%>

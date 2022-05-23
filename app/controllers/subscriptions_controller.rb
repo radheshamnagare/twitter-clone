@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
+  
   # GET /subscriptions or /subscriptions.json
   def index
     @subscription = Subscription.new
@@ -10,11 +11,13 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/1 or /subscriptions/1.json
   def show
+    redirect_to root_path,notice: "Subscription successfuly done"
   end
 
   # GET /subscriptions/new
   def new
     @subscription = Subscription.new
+    
   end
 
   # GET /subscriptions/1/edit

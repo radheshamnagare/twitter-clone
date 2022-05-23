@@ -22,6 +22,9 @@ class TweetsController < ApplicationController
 
   # POST /tweets or /tweets.json
   def create
+    if current_user.profile.nil?
+      redirect_to new_tweet_path,notice: "Must set profile first !" 
+    else  
     @tweet = Tweet.new(tweet_params)
 
     respond_to do |format|
@@ -33,6 +36,7 @@ class TweetsController < ApplicationController
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
+   end 
   end
 
   # PATCH/PUT /tweets/1 or /tweets/1.json

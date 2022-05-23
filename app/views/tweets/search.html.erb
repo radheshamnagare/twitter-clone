@@ -2,6 +2,12 @@
 <div id="tweets">
   <h3> Search Results :</h3>
   <br/>
+
+  <%if @tweets.blank? %>
+         <%= image_tag "search" ,class:"rounded mx-auto d-block"%>
+    <br/>
+    <p style="text-align: center;"> No Public tweets Found !</p>  
+  <%else%>
   <% @tweets.each do |tweet| %>
     <div class="card"> 
  
@@ -33,7 +39,7 @@
     </div>
     <br/><br/>
   <% end %>
-  
+<%end%>  
 </div>
 
 
