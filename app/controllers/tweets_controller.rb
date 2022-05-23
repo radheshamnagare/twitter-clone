@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order(created_at: :desc)
   end
 
   # GET /tweets/1 or /tweets/1.json
@@ -68,7 +68,7 @@ class TweetsController < ApplicationController
 
   def personalpage
     subscribers = current_user.subscriptions.pluck("subscription_id")
-    @tweets = Tweet.where("user_id IN(?)",subscribers)
+    @tweets = Tweet.where("user_id IN(?)",subscribers).order(created_at: :desc)
   end
   
   private

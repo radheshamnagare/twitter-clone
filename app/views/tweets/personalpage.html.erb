@@ -1,6 +1,8 @@
- <% if @tweets.count() %>
-    <h1>You don't have any Subscrption...</h1>
- <%else%>
+<div class="container">
+<br/>
+<% if @tweets.count() ==0 %>
+  <h1> Not any Subscription Post yet...!</h1>
+<%end%>
 <div id="tweets">
   <% @tweets.each do |tweet| %>
     <div class="card"> 
@@ -11,10 +13,12 @@
        Title:
        <%= tweet.title%>
        </strong>
+       <%if tweet.image.attached? %>
        <br/><br/>
       <%= image_tag tweet.image ,class:"rounded ",style:"width:300px;"%>
+      <%end%>
       <br/><br/>
-       <strong>About:</strong>
+       <strong># </strong>
         <%= tweet.about%>
         
       </div>
@@ -35,5 +39,5 @@
   <% end %>
   
 </div>
-<%end%>  
 
+</div>

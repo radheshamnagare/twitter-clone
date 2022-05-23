@@ -1,12 +1,15 @@
+<div class="container">
+<br/>
 <%if @profiles.blank? %>
   
     <%= image_tag "search" ,class:"rounded mx-auto d-block"%>
     <br/>
     <p style="text-align: center;"> No Public User's Found !</p>
 
-<%else%>
+<%else %>
+
 <%@profiles.each do |profile|%>
- <%if profile.user!= current_user && !Subscription.exists?('subscription_id' => profile.user.id)%>
+ <%if profile.user!= current_user %>
 <div class="card" style="width:30%;float:left;margin:4px;" >
  <div class="card-header">
       <strong>Name:</strong>
@@ -19,7 +22,7 @@
    <br/><br/>
    
    <div class="btn-group">
-
+  <%if !Subscription.exists?('subscription_id' => profile.user.id)%>
    <%= form_with(model: @subscription) do |form| %>
   <% if @subscription.errors.any? %>
     
@@ -32,18 +35,23 @@
       </ul>
     </div>
   <% end %>
-
+ 
   <div>
     
     <%= form.number_field :subscription_id ,value:profile.user.id ,type: :hidden%>
  
-    <%= form.text_field :user_id ,value:current_user.id ,type: :hidden%>
+    <%= form.number_field :user_id ,value:current_user.id ,type: :hidden%>
   </div>
 
   <div>
     <%= form.submit value:"connect",class:"btn btn-danger btn-sm" %>
   </div>
  <% end %>
+
+<%else%>
+ <% c = Subscription.where('subscription_id' => profile.user.id)%>
+ <%= button_to "Unconnect", c.first, method: :delete ,class:"btn btn-secondary btn-sm" %>
+<%end%>
   &nbsp;
 
    <button class="btn btn-sm">Connections :
@@ -60,3 +68,4 @@
  <%end%>
 <%end%>
 <%end%>
+</div>

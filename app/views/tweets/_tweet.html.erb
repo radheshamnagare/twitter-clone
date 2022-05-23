@@ -1,11 +1,9 @@
+<div class="container">
+<br/>
+<div class="card">
 <div id="<%= dom_id tweet %>">
   
     
-      <%if !tweet.user.profile.nil? %>
-      <div class="card-header" ,style="color:blue;">
-       <%= image_tag tweet.user.profile.profile_photo ,class:"rounded-circle",style:"width:100px;height:100px;" %> 
-        </div>  
-      <%end%> 
     
 
       <div class="card-body">
@@ -13,41 +11,39 @@
        Title:
        <%= tweet.title%>
        </strong>
-       <br/><br/>
        <% if tweet.image.attached? %>
+       <br/><br/>
         <%= image_tag tweet.image ,class:"rounded ",style:"width:600px;"%>
        <%end%> 
       <br/><br/>
-       <strong>About:</strong>
+       <strong>#</strong>
         <%= tweet.about%>
         <br/><br/>
-       <strong>Description :</strong>
+       <strong>
        <%= tweet.description %>
+       </strong>
         <br/><br/>
 
-      <%if tweet.user == current_user %>  
-      <div class="btn btn-group">
-      
-       <%= link_to "Edit", edit_tweet_path(tweet) ,class:"btn btn-warning btn-sm "%> &nbsp;
-        
-     <%end%>
-       <%= link_to "Back ", tweets_path ,class:"btn btn-dark btn-sm"%>
+    
+       <%= link_to "Back ", 'javascript:history.back()' ,class:"btn btn-dark btn-sm"%>
       </div>
      
      </div>
       
     <div class="card-footer">
-        <strong>created_at :</strong>
-        <%= time_ago_in_words(tweet.created_at)%> |
-        <strong>updated_at</strong>
-        <%= time_ago_in_words(tweet.updated_at)%> |
         <% if !tweet.user.profile.nil? %> 
-        <strong> BY : <%= tweet.user.profile.name %></strong>
+        <%= image_tag tweet.user.profile.profile_photo ,class:"rounded-circle",style:"width:60px;height:60px;" %> 
+       
+        <%= link_to tweet.user.profile.name, tweet.user.profile %>
         <%else%>
            <strong>  <%= tweet.user.email %></strong>
-        <%end%>
+        <%end%> 
+        <strong>
+        <%= tweet.created_at.localtime.strftime("%d %b, %y at %I : %M %p") %> 
+        </strong>
     </div>  
  
   </div>
 
 
+</div>
