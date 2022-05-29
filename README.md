@@ -53,4 +53,17 @@ Twitter using Ruby on Rails is original idea from Twitter website. try to develo
 - It is keep updating ,it display updated latest tweets first. 
 
   
+## Docker image
+ pulling the docker image 
+ 
+ ```bash
+   docker pull radhesham/twitter:1.0
+   ```
+ 
+ run the docker pull image
    
+   ```
+   docker run radhesham/twitter:1.0
+   ```
+   
+    
