@@ -56,8 +56,8 @@ Twitter using Ruby on Rails is original idea from Twitter website. try to develo
 ## Docker image
  pulling the docker image 
  
- ```bash
-   docker pull radhesham/twitter:1.0
+ ```
+   docker pull radhesham/twitter:1.0 
    ```
  
  run the docker pull image
