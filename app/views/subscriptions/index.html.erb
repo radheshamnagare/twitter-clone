@@ -20,9 +20,13 @@
   <div id="<%= dom_id profile %>">
    <%= image_tag(profile.profile_photo,class:"rounded mx-auto ",style: 'height:150px;width:150px;') %>
    <br/><br/>
-   
+   <%if current_user.nil? %>
+    <% uid =0 %>
+   <%else%>
+     <% uid = current_user.id %>
+   <%end%>
    <div class="btn-group">
-  <%if !Subscription.exists?('subscription_id' => profile.user.id)%>
+  <%if !Subscription.exists?('subscription_id' => profile.user.id,'user_id' => uid)%>
    <%= form_with(model: @subscription) do |form| %>
   <% if @subscription.errors.any? %>
     
@@ -39,8 +43,9 @@
   <div>
     
     <%= form.number_field :subscription_id ,value:profile.user.id ,type: :hidden%>
- 
+    <% if !current_user.nil? %>
     <%= form.number_field :user_id ,value:current_user.id ,type: :hidden%>
+    <%end%>
   </div>
 
   <div>

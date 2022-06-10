@@ -1,4 +1,4 @@
-
+<div class="container">
 <div id="tweets">
   <h3> Search Results :</h3>
   <br/>
@@ -17,9 +17,10 @@
        Title:
        <%= tweet.title%>
        </strong>
-       <br/><br/>
-      <%= image_tag tweet.image ,class:"rounded ",style:"width:300px;"%>
+      <% if tweet.image.attached? %> 
       <br/><br/>
+      <%= image_tag tweet.image ,class:"rounded ",style:"width:400px;"%>
+      <%end%>
        <strong>About:</strong>
         <%= tweet.about%>
         
@@ -41,5 +42,4 @@
   <% end %>
 <%end%>  
 </div>
-
-
+</div>
